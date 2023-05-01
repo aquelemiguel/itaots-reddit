@@ -1,7 +1,6 @@
 use chrono::Local;
-use itertools::Itertools;
 
-pub fn format_reply(bulletpoints: &Vec<String>) -> String {
+pub fn format_reply(bulletpoints: &[String]) -> String {
     bulletpoints.join("  \n\n")
 }
 

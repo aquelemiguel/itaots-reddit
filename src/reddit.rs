@@ -4,8 +4,8 @@ use std::env;
 use crate::utils::log;
 
 pub async fn reply(me: &Me, message_id: &str, content: &str) {
-    if let Ok(_) = me.comment(&content, &message_id).await {
-        me.mark_read(&message_id).await.unwrap();
+    if me.comment(content, message_id).await.is_ok() {
+        me.mark_read(message_id).await.unwrap();
     }
 }
 
@@ -20,7 +20,7 @@ pub fn parse_request(message: &BasicThing<InboxData>) -> Vec<String> {
 
 pub async fn fetch_unread(me: &Me) -> Result<Vec<BasicThing<InboxData>>, RouxError> {
     log('🔎', "checking inbox for unread messages...");
-    me.unread().await.and_then(|inbox| Ok(inbox.data.children))
+    me.unread().await.map(|inbox| inbox.data.children)
 }
 
 pub async fn auth() -> Result<Me, RouxError> {

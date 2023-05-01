@@ -24,8 +24,8 @@ async fn main() {
                 let mut content = String::new();
 
                 for acronym in parse_request(message).iter() {
-                    let albums = search(&build_query(&acronym)).await;
-                    let albums = parse(&albums, &acronym);
+                    let albums = search(&build_query(acronym)).await;
+                    let albums = parse(&albums, acronym);
 
                     println!("{:?}", albums);
 
