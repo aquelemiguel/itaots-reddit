@@ -11,7 +11,11 @@ pub async fn reply(me: &Me, message_id: &str, content: &str) {
 
 pub fn parse_request(message: &BasicThing<InboxData>) -> Vec<String> {
     let content = &message.data.body;
-    content.split(' ').skip(1).map(|s| s.to_string()).collect()
+    content
+        .split(' ')
+        .skip(1)
+        .map(|s| s.to_uppercase())
+        .collect()
 }
 
 pub async fn fetch_unread(me: &Me) -> Result<Vec<BasicThing<InboxData>>, RouxError> {
