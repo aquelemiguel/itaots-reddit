@@ -7,13 +7,12 @@
 Write a Reddit comment like such:
 
 ```
-u/ITAOTSBot ITCOTCK TWTOATCWBATRT
+u/ITAOTSBot LTIY ITCOTCK
 ```
 
 I will reply as follows:
 
 ```
+💿 **LTIY** is **Leaves Turn Inside You** by Unwound
 💿 **ITCOTCK** is **In The Court of the Crimson King** by King Crimson
-
-💿 **TWTOATCWBATRT** is **Those Who Throw Objects at the Crocodiles Will Be Asked to Retrieve Them** by Bruno Pernadas
 ```
