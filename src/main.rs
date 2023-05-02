@@ -7,7 +7,7 @@ use std::time::Duration;
 use lastfm::{parse, search};
 use reddit::{auth, fetch_unread, parse_request, reply};
 use tokio::time::sleep;
-use utils::{build_query, format_bulletpoint};
+use utils::{build_query, format_bulletpoint, get_footer};
 
 #[tokio::main]
 async fn main() {
@@ -21,7 +21,7 @@ async fn main() {
     loop {
         if let Ok(messages) = fetch_unread(&me).await {
             for message in messages.iter() {
-                let mut content = String::new();
+                let mut bulletpoints = String::new();
 
                 for acronym in parse_request(message).iter() {
                     let albums = search(&build_query(acronym)).await;
@@ -29,9 +29,11 @@ async fn main() {
 
                     if let Some(picked) = albums.first() {
                         let bullet = format!("{}  \n\n", format_bulletpoint(picked, acronym));
-                        content.push_str(&bullet);
+                        bulletpoints.push_str(&bullet);
                     }
                 }
+
+                let content = format!("{}\n\n{}", bulletpoints, &get_footer());
                 reply(&me, &message.data.name, &content).await;
             }
         }

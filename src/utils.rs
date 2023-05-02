@@ -1,7 +1,10 @@
 use chrono::Local;
 
-pub fn format_reply(bulletpoints: &[String]) -> String {
-    bulletpoints.join("  \n\n")
+pub fn get_footer() -> String {
+    let usage = "✍️ [Usage](https://github.com/aquelemiguel/itaots-reddit#usage)";
+    let issues = "🐛 [Report issues](https://github.com/aquelemiguel/itaots-reddit/issues)";
+    let github = "⭐️ [GitHub](https://github.com/aquelemiguel/itaots-reddit)";
+    [usage, issues, github].join(" | ")
 }
 
 pub fn format_bulletpoint(pair: &(String, String), acronym: &str) -> String {
