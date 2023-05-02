@@ -27,14 +27,11 @@ async fn main() {
                     let albums = search(&build_query(acronym)).await;
                     let albums = parse(&albums, acronym);
 
-                    println!("{:?}", albums);
-
                     if let Some(picked) = albums.first() {
                         let bullet = format!("{}  \n\n", format_bulletpoint(picked, acronym));
                         content.push_str(&bullet);
                     }
                 }
-                println!("{content}");
                 reply(&me, &message.data.name, &content).await;
             }
         }
